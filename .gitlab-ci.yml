@@ -29,7 +29,7 @@ deploy prod:
     - echo "$AWS_CREDENTIALS" > ~/.aws/credentials
   script:
     - pip install awscli
-    - aws s3 sync ./dist s3://vuejs-cicd
+    - aws s3 sync ./dist s3://vuejs-cicd --acl public-read
 
 .build stage:
   image: node:10.15.0-stretch
