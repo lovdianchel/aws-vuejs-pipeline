@@ -19,6 +19,9 @@ build prod:
 deploy prod:
   image: python:latest
   stage: deploy
+  environment:
+    name: Production
+    url: http://vuejs-cicd.s3-website-us-east-1.amazonaws.com/
   tags:
     - josua
   before_script:
@@ -49,4 +52,4 @@ deploy prod:
     - master
   script:
     - pip install awscli
-    - aws s3 sync ./dist s3://YOUR_DEV_BUCKET_NAME
+    - aws s3 sync ./dist s3://YOUR_DEV_BUCKET_NAME --acl public-read
