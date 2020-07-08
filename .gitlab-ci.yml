@@ -21,6 +21,9 @@ deploy prod:
   stage: deploy
   tags:
     - josua
+  before_script:
+    - mkdir ~/.aws
+    - echo "$AWS_CREDENTIALS" > ~/.aws/credentials
   script:
     - pip install awscli
     - aws s3 sync ./dist s3://vuejs-cicd
