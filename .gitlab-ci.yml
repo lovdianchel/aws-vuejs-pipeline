@@ -5,8 +5,8 @@ stages:
 build prod:
   image: node:10.15.0-stretch
   stage: build
-  only:
-    - tags
+  tags:
+    - josua
   script:
     - npm install -g @vue/cli@latest
     - npm install
@@ -19,8 +19,8 @@ build prod:
 deploy prod:
   image: python:latest
   stage: deploy
-  only:
-    - tags
+  tags:
+    - josua
   script:
     - pip install awscli
     - aws s3 sync ./dist s3://vuejs-cicd
